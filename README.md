@@ -11,4 +11,5 @@ npm install
 npm update
 
 npm start
+
 Starts the development server.
