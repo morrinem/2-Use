@@ -1,15 +1,14 @@
 # Second-hand-Exchange
 Software Engineering Project: Second hand exchange webapp, Group 38
 
+clone the repository 
+cd 2-Use
 
-  npm start
-    Starts the development server.
+cd 2-use
 
-  npm run build
-    Bundles the app into static files for production.     
+npm install
 
-  npm test
-    Starts the test runner.
-  npm run eject
-guration files
-    and scripts into the app directory. If you do this, you can’t go back!
+npm update
+
+npm start
+Starts the development server.
