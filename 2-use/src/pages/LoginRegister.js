@@ -1,8 +1,9 @@
 import {useState} from "react";
 import Axios from 'axios'
+import '../Styles/login.css'
 
 
-function App() {
+function LoginRegister() {
 
     const [passwordReg, setPasswordReg] = useState('')
     const [usernameReg, setUsernameReg] = useState('')
@@ -82,4 +83,4 @@ function App() {
     );
 }
 
-export default App;
+export default LoginRegister;
