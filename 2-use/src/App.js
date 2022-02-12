@@ -1,5 +1,6 @@
 import Home from "./pages/Home";
 import ProductPage from "./pages/ProductPage";
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 /* 
 Replace <Home/> below with <ProductPage/> to view the product page
 I'll link it up with the home page after
@@ -8,9 +9,11 @@ I'll link it up with the home page after
 
 function App() {
   return (
-    <div>
-        <Home/>
-    </div>
+    
+        <Router>
+            <Route path='/' exact component={Home} />
+        </Router>
+  
 )
 }
 
