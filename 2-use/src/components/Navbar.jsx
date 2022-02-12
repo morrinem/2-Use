@@ -3,6 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 import {Search, ShoppingCartOutlined} from '@material-ui/icons'
 import { Badge } from '@material-ui/core'
+import { Link } from "react-router-dom"
 
 import {mobile} from '../responsive'
 
@@ -82,7 +83,7 @@ const Navbar = () => {
                     <Logo>2USE.</Logo>
                 </Center>
                 <Right>
-                    <MenuItem>REGISTER WITH TCD EMAIL</MenuItem>
+                    <Link to="/loginRegister">LOGIN/REGISTER</Link>
                     <MenuItem>
                         <Badge badgeContent={0} color="primary">
                             <ShoppingCartOutlined />
