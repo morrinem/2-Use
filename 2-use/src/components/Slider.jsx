@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { sliderItems } from '../data'
 import { mobile } from '../responsive'
+import { Link } from "react-router-dom"
+
 
 
 
@@ -114,8 +116,12 @@ const Slider = () => {
                         <InfoContaiiner>
                             <Title>{item.title}</Title>
                             <Desc> {item.desc} </Desc>
-                            <Button>BUY</Button>
-                            <Button>SELL</Button>
+                            <Link to="/ProductList">
+                            <Button type="button" className="btn btn-info">BUY</Button>
+                            </Link>
+                            <Link to="/ProductList">
+                            <Button type="button" className="btn btn-info">SELL</Button>
+                            </Link>
                         </InfoContaiiner>
                     </Slide>
                 ))}

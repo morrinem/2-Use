@@ -10,8 +10,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: coral;
-    width: 60%;
+    background-color: rgb(2, 177, 162);
+    width: 100%;
     height: 300px;
     border-radius: 20px;
     margin-top: 20px;
@@ -32,8 +32,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: lightblue;
-    width: 60%;
+    background-color: rgb(151, 144, 144);
+    width: 100%;
     height: 300px;
     border-radius: 20px;
     margin-top: 20px;
@@ -41,7 +41,7 @@
 
 .Login button, input {
     width: 300px;
-    height: 40px;
+    height: 20px;
     border: none;
     border-radius: 7px;
     margin: 10px;

@@ -31,7 +31,7 @@ const SearchContainer = styled.div`
     display: flex;
     align-items: center;
     margin-left: 25px;
-    padding: 5px;
+    padding: px;
 `
 
 const Input = styled.input`
@@ -66,6 +66,12 @@ const MenuItem = styled.div`
     margin-left: 25px;
     ${mobile({fontSize:"12px",marginLeft:"10px"})};
 `
+const Button = styled.button`
+    padding: 0px;
+    font-size: 20px;
+    background-color: teal;
+    cursor: pointer;
+`
 
 //badgecontent is the amount of items in the cart
 //we'll modify this when we get products up and running
@@ -83,9 +89,12 @@ const Navbar = () => {
                     <Logo>2USE.</Logo>
                 </Center>
                 <Right>
-                    <Link to="/loginRegister">LOGIN/REGISTER</Link>
+                    <Link to="/loginregister">
+                    <Button type="button" className="btn btn-info">LOGIN/REGISTER</Button>
+                    </Link>
                     <MenuItem>
                         <Badge badgeContent={0} color="primary">
+                            <Link to="/loginregister"></Link>
                             <ShoppingCartOutlined />
                         </Badge>
                     </MenuItem>

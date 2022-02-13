@@ -1,6 +1,11 @@
 import {useState} from "react";
 import Axios from 'axios'
 import '../Styles/login.css'
+import NavbarLogin from '../components/NavbarLogin'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+
+
 
 
 function LoginRegister() {
@@ -46,6 +51,7 @@ function LoginRegister() {
 
     return (
         <div className="App">
+        <NavbarLogin/>
             <div className="Registration">
 
                 <h1>Registration</h1>
@@ -79,6 +85,7 @@ function LoginRegister() {
                 <button onClick={login}>Login</button>
             </div>
             <h1>{loginStatus}</h1>
+            <Footer />
         </div>
     );
 }
