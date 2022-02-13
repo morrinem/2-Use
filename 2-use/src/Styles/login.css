@@ -1,0 +1,54 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Registration {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: coral;
+    width: 60%;
+    height: 300px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.Registration button, input {
+    width: 300px;
+    height: 40px;
+    border: none;
+    border-radius: 7px;
+    margin: 10px;
+    padding-left: 15px;
+    font-size: 17px;
+}
+
+.Login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: lightblue;
+    width: 60%;
+    height: 300px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.Login button, input {
+    width: 300px;
+    height: 40px;
+    border: none;
+    border-radius: 7px;
+    margin: 10px;
+    padding-left: 15px;
+    font-size: 17px;
+}
+
+button {
+    cursor: pointer;
+}

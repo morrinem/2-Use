@@ -1,32 +1,34 @@
 # Second-hand-Exchange
 Software Engineering Project: Second hand exchange webapp, Group 38
 
-clone the repository 
-cd 2-Use
+clone the repository 2-Use
 
-cd 2-use
+cd into the main directory 2-Use then:
 
-npm install
+**cd 2-use**
 
-npm update
+**npm install****
 
-npm start
+**npm update**
 
-Starts the development server.
+**npm start**
 
 
-If this doesn't work try this 
+This starts the development server.
 
-cd 2-Use
 
-run "npm -i"
+If this doesn't work then the node modules weren't installed so try this 
 
-ng serve
+**cd 2-Use**
 
-cd 2-use
+**run "npm -i"**
 
-npm install
+**ng serve**
 
-npm update
+**cd 2-use**
 
-npm start
+**npm install****
+
+**npm update**
+
+**npm start**
