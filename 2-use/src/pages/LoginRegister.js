@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import Axios from 'axios'
 import '../Styles/login.css'
 import NavbarLogin from '../components/NavbarLogin'
@@ -18,6 +18,7 @@ function LoginRegister() {
 
     const [loginStatus, setLoginStatus] = useState('')
 
+    Axios.defaults.withCredentials = true
     const register = () => {
         const tcdEmail = "tcd.ie"
         //check for tcd email
@@ -48,6 +49,16 @@ function LoginRegister() {
 
         })
     }
+
+    useEffect(() => {
+        Axios.get("http://localhost:3001/login")
+            .then((response) => {
+                if(response.data.loggedIn == true){
+                    setLoginStatus(response.data.user[0].username)
+                }
+
+            })
+    },[])
 
     return (
         <div className="App">
