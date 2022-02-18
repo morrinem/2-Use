@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import Announcement from '../components/Announcement'
 import Navbar from '../components/Navbar'
 import Products from '../components/Products'
-import Newsletter from '../components/Newsletter'
 import Footer from '../components/Footer'
 import { mobile } from '../responsive'
 
@@ -48,19 +47,7 @@ const ProductList = () => {
             <Title>Clothing</Title>
             <FilterContainer>
                 <Filter>
-                    <FilterText>Filter Products:</FilterText>
-                    <Select>
-                        <Option disabled selected>
-                            Color
-                        </Option>
-                        <Option>White</Option>
-                        <Option>Black</Option>
-                        <Option>Red</Option>
-                        <Option>Blue</Option>
-                        <Option>Yellow</Option>
-                        <Option>Green</Option>
-                    </Select>
-                    
+                    <FilterText>Filter Products:</FilterText>                    
                     <Select>
                         <Option disabled selected>
                             Size

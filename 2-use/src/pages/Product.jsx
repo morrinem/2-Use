@@ -1,10 +1,3 @@
-
-/*
-This is the page for individual products working on this
-at the moment. It is not called from the main page yet
---Michael
-*/
-
 import React from 'react'
 import styled from 'styled-components'
 
@@ -12,7 +5,7 @@ import Announcement from '../components/Announcement'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
-import ImageProduct from '../images/clothing3.jpg'
+import ImageProduct from '../images/clothing1.jpg'
 import { Add, Remove } from '@material-ui/icons'
 import { mobile } from '../responsive'
 
@@ -132,12 +125,12 @@ const Product = () => {
 
                 {/* info container */}
                 <InfoContainer>
-                    <Title>Name Of Item</Title>
+                    <Title>Rockies Jacket</Title>
                     <Desc>
-                        Description of Item
+                        Product description
                     </Desc>
-                    <Price>€ Price of Item</Price>
-                    {/* Filter options they don't do anything yet */}
+                    <Price>€20</Price>
+
                     <FilterContainer>
                         <Filter>
                             <FilterTitle>Size</FilterTitle>

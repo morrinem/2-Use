@@ -12,8 +12,10 @@ import P3 from "./images/clothing3.jpg"
 import P4 from "./images/clothing4.jpg"
 import P5 from "./images/clothing5.jpg"
 import P6 from "./images/clothing6.jpg"
-import P7 from "./images/clothing1.jpg"
-import P8 from "./images/clothing1.jpg"
+import P7 from "./images/clothing7.jpg"
+import P8 from "./images/clothing8.jpg"
+import P9 from "./images/clothing9.jpg"
+import P10 from "./images/clothing10.jpg"
 
 
 
@@ -95,10 +97,10 @@ export const popularProducts = [
     },
     {
         id:7,
-        img:P7
+        img:P9
     },
     {
         id:8,
-        img:P8
+        img:P10
     },
 ]
