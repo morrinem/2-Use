@@ -16,7 +16,9 @@ function LoginRegister() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    const [loginStatus, setLoginStatus] = useState('')
+
+
+    const [loginStatus, setLoginStatus] = useState(false)
 
     Axios.defaults.withCredentials = true
     const register = () => {
@@ -29,9 +31,6 @@ function LoginRegister() {
                 }).then((response) => {
                 console.log(response)
             })
-            setLoginStatus("Registered")
-        }else{
-            setLoginStatus("Not a valid tcd email!")
         }
 
     }
@@ -41,10 +40,11 @@ function LoginRegister() {
             {username: username,
                 password: password,
             }).then((response) => {
-            if(response.data.message){
-                setLoginStatus(response.data.message)
+            if(!response.data.auth){
+                setLoginStatus(false)
             }else{
-                setLoginStatus("Logged in!")
+                localStorage.setItem("token", response.data.token)
+                setLoginStatus(true)
             }
 
         })
@@ -60,6 +60,15 @@ function LoginRegister() {
             })
     },[])
 
+    const userAuth = () => {
+        Axios.get("http://localhost:3001/isUserAuth", {
+            headers: {
+                "x-access-token": localStorage.getItem("token"),
+        },
+        }).then((response) => {
+            console.log(response);
+        })
+    }
     return (
         <div className="App">
         <NavbarLogin/>
@@ -95,7 +104,9 @@ function LoginRegister() {
 
                 <button onClick={login}>Login</button>
             </div>
-            <h1>{loginStatus}</h1>
+            <h1>{loginStatus && (
+                <button onClick={userAuth}>Check if Auth</button>
+            )}</h1>
             <Footer />
         </div>
     );

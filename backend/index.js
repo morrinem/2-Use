@@ -3,6 +3,7 @@ const app = express()
 const mysql = require('mysql')
 const cors = require('cors')
 
+require("dotenv").config();
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
@@ -11,6 +12,8 @@ const PORT = 3001
 
 const bcrypt = require('bcrypt')
 const saltRounds = 10
+
+const jwt = require('jsonwebtoken')
 
 app.use(express.json())
 app.use(cors(
@@ -68,6 +71,28 @@ app.post('/register', (req, res) => {
 
 })
 
+const verifyJWT = (req, res, next) => {
+    const token = req.headers["x-access-token"]
+
+    if(!token) {
+        res.send("Yo, we need a token, please give it next time")
+    } else {
+        jwt.verify(token, "secret123", (err, decoded) => {
+            if(err){
+                res.json({auth: false, message: "failed auth" })
+            }else{
+                req.userId = decoded.id
+                next()
+            }
+        })
+    }
+}
+
+app.get('/isUserAuth', verifyJWT, (req,res) => {
+    res.send("You are anthenticated Congrats")
+})
+
+
 app.get("/login", (req, res) => {
     if(req.session.user){
         res.send({loggedIn: true, user: req.session.user})
@@ -94,19 +119,20 @@ app.post('/login', (req,res) => {
                     result[0].password,
                     (error, response) => {
                         if(response) {
+
+
+                            const id = result[0].id
+                            const token = jwt.sign({id},
+                                "secret123",
+                                {expiresIn: 300,} )
                             req.session.user = result
-                            console.log(req.session.user)
-                            res.send(result)
+                            res.json({auth: true, token: token, result: result})
                         }else{
-                            res.send({
-                                message: "wrong username or password"
-                            })
+                            res.json({auth: false, message: "wrong username/password combo"})
                         }
                     })
             } else {
-                res.send({
-                    message: "User doesn't exist"
-                })
+                res.json({auth: false, message: "no user exists"})
             }
         })
 })
