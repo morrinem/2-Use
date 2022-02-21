@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
 import Axios from 'axios'
 import '../Styles/login.css'
 import NavbarLogin from '../components/NavbarLogin'
@@ -19,6 +19,12 @@ function LoginRegister() {
 
 
     const [loginStatus, setLoginStatus] = useState(false)
+
+
+    const logOut = () => {
+        localStorage.setItem("token", " ")
+        setLoginStatus(false)
+    }
 
     Axios.defaults.withCredentials = true
     const register = () => {
@@ -60,15 +66,15 @@ function LoginRegister() {
             })
     },[])
 
-    const userAuth = () => {
-        Axios.get("http://localhost:3001/auth/isUserAuth", {
-            headers: {
-                "x-access-token": localStorage.getItem("token"),
-        },
-        }).then((response) => {
-            console.log(response);
-        })
-    }
+    // const userAuth = () => {
+    //     Axios.get("http://localhost:3001/auth/isUserAuth", {
+    //         headers: {
+    //             "x-access-token": localStorage.getItem("token"),
+    //     },
+    //     }).then((response) => {
+    //         console.log(response);
+    //     })
+    // }
     return (
         <div className="App">
         <NavbarLogin/>
@@ -105,8 +111,9 @@ function LoginRegister() {
                 <button onClick={login}>Login</button>
             </div>
             <h1>{loginStatus && (
-                <button onClick={userAuth}>Check if Auth</button>
-            )}</h1>
+                <button onClick={logOut}>LogOut</button>
+            )
+            }</h1>
             <Footer />
         </div>
     );

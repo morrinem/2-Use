@@ -99,7 +99,6 @@ router.post('/login', async (req, res) => {
          const token = sign({username: user.username, id: user.id}, "tochange")
          req.session.user = user
          res.json({auth: true, token: token, result: user})
-         res.json(accessToken)
       })
    }
 })
