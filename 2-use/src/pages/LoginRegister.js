@@ -25,7 +25,7 @@ function LoginRegister() {
         const tcdEmail = "tcd.ie"
         //check for tcd email
         if(usernameReg.substring(usernameReg.length-tcdEmail.length) == tcdEmail){
-            Axios.post('http://localhost:3001/register',
+            Axios.post('http://localhost:3001/auth/register',
                 {username: usernameReg,
                     password: passwordReg,
                 }).then((response) => {
@@ -36,7 +36,7 @@ function LoginRegister() {
     }
 
     const login = () => {
-        Axios.post('http://localhost:3001/login',
+        Axios.post('http://localhost:3001/auth/login',
             {username: username,
                 password: password,
             }).then((response) => {
@@ -51,7 +51,7 @@ function LoginRegister() {
     }
 
     useEffect(() => {
-        Axios.get("http://localhost:3001/login")
+        Axios.get("http://localhost:3001/auth/login")
             .then((response) => {
                 if(response.data.loggedIn == true){
                     setLoginStatus(response.data.user[0].username)
@@ -61,7 +61,7 @@ function LoginRegister() {
     },[])
 
     const userAuth = () => {
-        Axios.get("http://localhost:3001/isUserAuth", {
+        Axios.get("http://localhost:3001/auth/isUserAuth", {
             headers: {
                 "x-access-token": localStorage.getItem("token"),
         },
