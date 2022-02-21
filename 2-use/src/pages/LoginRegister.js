@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect, useContext} from "react";
 import Axios from 'axios'
 import '../Styles/login.css'
 import NavbarLogin from '../components/NavbarLogin'
@@ -16,39 +16,65 @@ function LoginRegister() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    const [loginStatus, setLoginStatus] = useState('')
 
+
+    const [loginStatus, setLoginStatus] = useState(false)
+
+
+    const logOut = () => {
+        localStorage.setItem("token", " ")
+        setLoginStatus(false)
+    }
+
+    Axios.defaults.withCredentials = true
     const register = () => {
         const tcdEmail = "tcd.ie"
         //check for tcd email
         if(usernameReg.substring(usernameReg.length-tcdEmail.length) == tcdEmail){
-            Axios.post('http://localhost:3001/register',
+            Axios.post('http://localhost:3001/auth/register',
                 {username: usernameReg,
                     password: passwordReg,
                 }).then((response) => {
                 console.log(response)
             })
-            setLoginStatus("Registered")
-        }else{
-            setLoginStatus("Not a valid tcd email!")
         }
 
     }
 
     const login = () => {
-        Axios.post('http://localhost:3001/login',
+        Axios.post('http://localhost:3001/auth/login',
             {username: username,
                 password: password,
             }).then((response) => {
-            if(response.data.message){
-                setLoginStatus(response.data.message)
+            if(!response.data.auth){
+                setLoginStatus(false)
             }else{
-                setLoginStatus("Logged in!")
+                localStorage.setItem("token", response.data.token)
+                setLoginStatus(true)
             }
 
         })
     }
 
+    useEffect(() => {
+        Axios.get("http://localhost:3001/auth/login")
+            .then((response) => {
+                if(response.data.loggedIn == true){
+                    setLoginStatus(response.data.user[0].username)
+                }
+
+            })
+    },[])
+
+    // const userAuth = () => {
+    //     Axios.get("http://localhost:3001/auth/isUserAuth", {
+    //         headers: {
+    //             "x-access-token": localStorage.getItem("token"),
+    //     },
+    //     }).then((response) => {
+    //         console.log(response);
+    //     })
+    // }
     return (
         <div className="App">
         <NavbarLogin/>
@@ -84,7 +110,10 @@ function LoginRegister() {
 
                 <button onClick={login}>Login</button>
             </div>
-            <h1>{loginStatus}</h1>
+            <h1>{loginStatus && (
+                <button onClick={logOut}>LogOut</button>
+            )
+            }</h1>
             <Footer />
         </div>
     );
