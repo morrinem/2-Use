@@ -37,6 +37,7 @@ const SocialIcon = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 `
 
 
@@ -96,7 +97,7 @@ const Footer = () => {
                         <Facebook />
                     </SocialIcon>
                     <SocialIcon color='E4405F'>
-                        <Instagram />
+                        <Instagram onClick={event => window.open('https://www.instagram.com/2use_platform/?hl=en')} />
                     </SocialIcon>
                     <SocialIcon color='55ACEE'>
                         <Twitter />

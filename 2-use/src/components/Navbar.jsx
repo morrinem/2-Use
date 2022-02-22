@@ -48,8 +48,11 @@ const Center = styled.div`
     text-align: center;
 `
 
-const Logo = styled.h1`
+const Logo = styled.button`
     font-weight: bold;
+    font-size: 35px;
+    border: none;
+    background-color: transparent;
     ${mobile({fontSize:"24px"})};
 `
 
@@ -69,41 +72,47 @@ const MenuItem = styled.div`
 const Button = styled.button`
     padding: 0px;
     font-size: 20px;
-    border-color: teal;
-    background-color: white;
+    background-color: teal;
     cursor: pointer;
 `
+
 
 //badgecontent is the amount of items in the cart
 //we'll modify this when we get products up and running
 const Navbar = () => {
     return (
-        <Container>
-            <Wrapper>
-                <Left>
-                    <SearchContainer>
-                        <Input placeholder='Search' />
-                        <Search style={{color:"gray",fontSize:16}}/>
-                    </SearchContainer>
-                </Left>
-                <Center>
-                    <Logo>2USE.</Logo>
-                </Center>
-                <Right>
-                    <Link to="/loginregister">
-                    <Button type="button" className="btn btn-info">LOGIN/REGISTER</Button>
-                    </Link>
-                    <MenuItem>
-                        <Badge badgeContent={0} color="primary">
-                            <Link to="/Product">
-                                <ShoppingCartOutlined />
-                            </Link>
-                        </Badge>
-                    </MenuItem>
-                </Right>
-            </Wrapper>
-        </Container>
-    )
+      <Container>
+        <Wrapper>
+          <Left>
+            <SearchContainer>
+              <Input placeholder="Search" />
+              <Search style={{ color: "gray", fontSize: 16 }} />
+            </SearchContainer>
+          </Left>
+          <Center>
+            <Link to="/">
+              <Logo type="button" className="btn btn-info">
+                2USE.
+              </Logo>
+            </Link>
+          </Center>
+          <Right>
+            <Link to="/loginregister">
+              <Button type="button" className="btn btn-info">
+                LOGIN/REGISTER
+              </Button>
+            </Link>
+            <MenuItem>
+              <Badge badgeContent={0} color="primary">
+                <Link to="/Product">
+                  <ShoppingCartOutlined />
+                </Link>
+              </Badge>
+            </MenuItem>
+          </Right>
+        </Wrapper>
+      </Container>
+    );
 }
 
 export default Navbar
