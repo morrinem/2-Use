@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import LoginRegister from "./pages/LoginRegister"
 import ProductList from "./pages/ProductList";
 import Product from "./pages/Product";
+import About from "./pages/About";
+
 /* 
 Replace <Home/> below with <ProductPage/> to view the product page
 I'll link it up with the home page after
@@ -19,6 +21,7 @@ function App() {
             <Route path='/ProductPage' exact component={ProductPage} />
             <Route path='/ProductList' exact component={ProductList} />
             <Route path='/Product' exact component={Product} />
+            <Route path='/About' exact component={About} />
         </Router>
   
 )

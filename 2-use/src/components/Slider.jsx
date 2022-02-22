@@ -81,6 +81,7 @@ const Button = styled.button`
     font-size: 20px;
     background-color: transparent;
     cursor: pointer;
+    margin: 10px;
 `
 
 
@@ -121,6 +122,9 @@ const Slider = () => {
                             </Link>
                             <Link to="/ProductList">
                             <Button type="button" className="btn btn-info">SELL</Button>
+                            </Link>
+                            <Link to="/About">
+                            <Button type="button" className="btn btn-info">ABOUT US</Button>
                             </Link>
                         </InfoContaiiner>
                     </Slide>

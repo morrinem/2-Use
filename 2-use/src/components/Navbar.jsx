@@ -69,7 +69,8 @@ const MenuItem = styled.div`
 const Button = styled.button`
     padding: 0px;
     font-size: 20px;
-    background-color: teal;
+    border-color: teal;
+    background-color: white;
     cursor: pointer;
 `
 
