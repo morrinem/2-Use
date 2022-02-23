@@ -1,9 +1,12 @@
 // Michael
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
 import {Search, ShoppingCartOutlined} from '@material-ui/icons'
 import { Badge } from '@material-ui/core'
 import { Link } from "react-router-dom"
+
+import { LoginContext } from '../Helper/Context'
+
 
 import {mobile} from '../responsive'
 
@@ -80,6 +83,14 @@ const Button = styled.button`
 //badgecontent is the amount of items in the cart
 //we'll modify this when we get products up and running
 const Navbar = () => {
+    
+    const { loggedIn, setLoggedIn } = useContext(LoginContext)
+
+    const logOut = () => {
+        localStorage.setItem("token", "")
+        setLoggedIn(false)
+    }
+    
     return (
       <Container>
         <Wrapper>
@@ -96,20 +107,38 @@ const Navbar = () => {
               </Logo>
             </Link>
           </Center>
-          <Right>
-            <Link to="/loginregister">
-              <Button type="button" className="btn btn-info">
-                LOGIN/REGISTER
-              </Button>
-            </Link>
-            <MenuItem>
-              <Badge badgeContent={0} color="primary">
-                <Link to="/Product">
-                  <ShoppingCartOutlined />
-                </Link>
-              </Badge>
-            </MenuItem>
-          </Right>
+            {
+                loggedIn ? (
+                    <Right>
+                            <Button onClick={logOut}>
+                                Log out
+                            </Button>
+                        <MenuItem>
+                            <Badge badgeContent={0} color="primary">
+                                <Link to="/Product">
+                                    <ShoppingCartOutlined />
+                                </Link>
+                            </Badge>
+                        </MenuItem>
+                    </Right>
+                ) : (
+                    <Right>
+                        <Link to="/loginregister">
+                            <Button type="button" className="btn btn-info">
+                                LOGIN/REGISTER
+                            </Button>
+                        </Link>
+                        <MenuItem>
+                            <Badge badgeContent={0} color="primary">
+                                <Link to="/Product">
+                                    <ShoppingCartOutlined />
+                                </Link>
+                            </Badge>
+                        </MenuItem>
+                    </Right>
+                )
+            }
+          
         </Wrapper>
       </Container>
     );
