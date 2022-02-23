@@ -123,7 +123,7 @@ const Navbar = () => {
                     </Right>
                 ) : (
                     <Right>
-                        <Link to="/loginregister">
+                        <Link to="/Register">
                             <Button type="button" className="btn btn-info">
                                 LOGIN/REGISTER
                             </Button>
