@@ -56,7 +56,6 @@ const Login = () => {
 
     return (
         <div className="App">
-                       onChange={(event) => {
             <NavbarLogin/>
             <div className="Login">
                 <h1>Login</h1>
