@@ -128,7 +128,7 @@ const Navbar = () => {
                                 REGISTER
                             </Button>
                         </Link>
-                        <Link to="/loginRegister">
+                        <Link to="/Login">
                             <Button type="button" className="btn btn-info">
                                 LOGIN
                             </Button>

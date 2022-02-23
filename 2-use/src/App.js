@@ -1,7 +1,7 @@
 import Home from "./pages/Home";
 import ProductPage from "./pages/ProductPage";
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Login from "./pages/LoginRegister"
+import Login from "./pages/Login"
 import ProductList from "./pages/ProductList";
 import Product from "./pages/Product";
 import About from "./pages/About";
@@ -23,7 +23,7 @@ function App() {
       <LoginContext.Provider value={{loggedIn, setLoggedIn}} > 
         <Router>
             <Route path='/' exact component={Home} />
-            <Route path='/loginRegister' exact component={Login} />
+            <Route path='/Login' exact component={Login} />
             <Route path='/ProductPage' exact component={ProductPage} />
             <Route path='/ProductList' exact component={ProductList} />
             <Route path='/Product' exact component={Product} />
