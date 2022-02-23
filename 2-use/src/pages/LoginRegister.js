@@ -5,6 +5,7 @@ import NavbarLogin from '../components/NavbarLogin'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
+import { LoginContext } from '../Helper/Context'
 
 
 
@@ -18,12 +19,12 @@ function LoginRegister() {
 
 
 
-    const [loginStatus, setLoginStatus] = useState(false)
+    const {loggedIn, setLoggedIn }= useContext(LoginContext)
 
 
     const logOut = () => {
         localStorage.setItem("token", " ")
-        setLoginStatus(false)
+        setLoggedIn(false)
     }
 
     Axios.defaults.withCredentials = true
@@ -47,10 +48,10 @@ function LoginRegister() {
                 password: password,
             }).then((response) => {
             if(!response.data.auth){
-                setLoginStatus(false)
+                setLoggedIn(false)
             }else{
                 localStorage.setItem("token", response.data.token)
-                setLoginStatus(true)
+                setLoggedIn(true)
             }
 
         })
@@ -59,22 +60,18 @@ function LoginRegister() {
     useEffect(() => {
         Axios.get("http://localhost:3001/auth/login")
             .then((response) => {
-                if(response.data.loggedIn == true){
-                    setLoginStatus(response.data.user[0].username)
-                }
-
             })
     },[])
 
-    // const userAuth = () => {
-    //     Axios.get("http://localhost:3001/auth/isUserAuth", {
-    //         headers: {
-    //             "x-access-token": localStorage.getItem("token"),
-    //     },
-    //     }).then((response) => {
-    //         console.log(response);
-    //     })
-    // }
+const userAuth = () => {
+        Axios.get("http://localhost:3001/auth/isUserAuth", {
+            headers: {
+                 "x-access-token": localStorage.getItem("token"),
+         },
+         }).then((response) => {
+             console.log(response);
+         })
+     }
     return (
         <div className="App">
         <NavbarLogin/>
@@ -110,10 +107,6 @@ function LoginRegister() {
 
                 <button onClick={login}>Login</button>
             </div>
-            <h1>{loginStatus && (
-                <button onClick={logOut}>LogOut</button>
-            )
-            }</h1>
             <Footer />
         </div>
     );
