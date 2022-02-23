@@ -1,6 +1,10 @@
 import React, { useState, useContext } from "react";
 import { UserContext, LoginContext } from "../Helper/Context";
 import axios from "axios";
+import '../Styles/login.css'
+import NavbarLogin from '../components/NavbarLogin'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 
 const Register = () => {
@@ -66,6 +70,7 @@ const Register = () => {
 
     return (
         <div className="App">
+            <NavbarLogin/>
             <div className="Registration">
 
                 <h1>Registration</h1>
@@ -98,6 +103,7 @@ const Register = () => {
 
                 <button onClick={handleSubmit}>Register</button>
             </div>
+            <Footer />
         </div>
     );
 };

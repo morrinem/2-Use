@@ -1,115 +1,88 @@
-import {useState, useEffect, useContext} from "react";
-import Axios from 'axios'
+import React, { useState, useContext } from "react";
+import { UserContext, LoginContext } from '../Helper/Context';
+import axios from "axios";
 import '../Styles/login.css'
 import NavbarLogin from '../components/NavbarLogin'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
-import { LoginContext } from '../Helper/Context'
 
-
-
-function LoginRegister() {
-
-    const [passwordReg, setPasswordReg] = useState('')
-    const [usernameReg, setUsernameReg] = useState('')
-
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-
-
-
+const Login = () => {
+   // const { userData, setUserData } = useContext(UserContext);
     const {loggedIn, setLoggedIn }= useContext(LoginContext)
 
+    const [user, setUser] = useState({
+        name: "",
+        password: "",
+    });
+    
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    const logOut = () => {
-        localStorage.setItem("token", " ")
-        setLoggedIn(false)
-    }
+        try {
+            const newUser = {
+                username: user.name,
+                password: user.password,
+            };
 
-    Axios.defaults.withCredentials = true
-    const register = () => {
-        const tcdEmail = "tcd.ie"
-        //check for tcd email
-        if(usernameReg.substring(usernameReg.length-tcdEmail.length) == tcdEmail){
-            Axios.post('http://localhost:3001/auth/register',
-                {username: usernameReg,
-                    password: passwordReg,
-                }).then((response) => {
-                console.log(response)
-            })
+            const loginResponse = await axios.post('http://localhost:3001/auth/login', newUser);
+          
+            /*setUserData({
+                token: loginResponse.data.token,
+                user: loginResponse.data.result,
+            });*/
+            localStorage.setItem("token", loginResponse.data.token);
+
+            setUser({
+                name: "",
+                password: "",
+            });
+            setLoggedIn(true)
+            
+        } catch (err) {
+            console.log("We have an error!");
         }
+    };
 
-    }
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setUser((oldUser) => {
+            return {
+                ...oldUser,
+                [name]: value,
+            };
+        });
+    };
 
-    const login = () => {
-        Axios.post('http://localhost:3001/auth/login',
-            {username: username,
-                password: password,
-            }).then((response) => {
-            if(!response.data.auth){
-                setLoggedIn(false)
-            }else{
-                localStorage.setItem("token", response.data.token)
-                setLoggedIn(true)
-            }
-
-        })
-    }
-
-    useEffect(() => {
-        Axios.get("http://localhost:3001/auth/login")
-            .then((response) => {
-            })
-    },[])
-
-const userAuth = () => {
-        Axios.get("http://localhost:3001/auth/isUserAuth", {
-            headers: {
-                 "x-access-token": localStorage.getItem("token"),
-         },
-         }).then((response) => {
-             console.log(response);
-         })
-     }
     return (
         <div className="App">
-        <NavbarLogin/>
-            <div className="Registration">
-
-                <h1>Registration</h1>
-                <input type="text"
-                       placeholder="Ex. murphr64@tcd.ie"
                        onChange={(event) => {
-                           setUsernameReg(event.target.value)
-                       }}/>
-
-                <input type="text"
-                       placeholder="Ex. password123"
-                       onChange={(event) => {
-                           setPasswordReg(event.target.value)
-                       }}/>
-
-                <button onClick={register}>Register</button>
-            </div>
+            <NavbarLogin/>
             <div className="Login">
                 <h1>Login</h1>
                 <input type="text"
-                       placeholder="Ex. murphr64@tcd.ie"
-                       onChange={(event) => {
-                           setUsername(event.target.value)
-                       }}/>
-                <input type="text"
-                       placeholder="Ex. password123"
-                       onChange={(event) => {
-                           setPassword(event.target.value)
-                       }}/>
+                    name="name"
+                    placeholder="dslkjfdsk@tcd.ie"
+                    value={user.name}
+                    required
+                    onChange={handleChange}
+                />
+                <h1>Password</h1>
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="djhfksd"
+                    value={user.password}
+                    onChange={handleChange}
+                />
 
-                <button onClick={login}>Login</button>
+                <button onClick={handleSubmit}>Login</button>
             </div>
             <Footer />
         </div>
     );
-}
+};
 
-export default LoginRegister;
+export default Login;
+
+

@@ -125,7 +125,12 @@ const Navbar = () => {
                     <Right>
                         <Link to="/Register">
                             <Button type="button" className="btn btn-info">
-                                LOGIN/REGISTER
+                                REGISTER
+                            </Button>
+                        </Link>
+                        <Link to="/loginRegister">
+                            <Button type="button" className="btn btn-info">
+                                LOGIN
                             </Button>
                         </Link>
                         <MenuItem>
