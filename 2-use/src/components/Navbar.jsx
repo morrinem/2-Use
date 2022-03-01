@@ -77,6 +77,7 @@ const Button = styled.button`
     font-size: 20px;
     background-color: teal;
     cursor: pointer;
+    margin: 10px;
 `
 
 
