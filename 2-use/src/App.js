@@ -8,6 +8,7 @@ import About from "./pages/About";
 import React, { createContext, useState, useEffect } from 'react'
 import { LoginContext } from './Helper/Context'
 import Register from './pages/Register'
+import Profile from './pages/Profile'
 /* 
 Replace <Home/> below with <ProductPage/> to view the product page
 I'll link it up with the home page after
@@ -29,6 +30,7 @@ function App() {
             <Route path='/Product' exact component={Product} />
             <Route path='/About' exact component={About} />
             <Route path='/Register' exact component={Register} />
+            <Route path='/Profile/:id' exact component={Profile} />
         </Router>
 
       </LoginContext.Provider>
