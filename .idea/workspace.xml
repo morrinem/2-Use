@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2662e2a1-d7df-432b-96d1-29ac6aacdbb9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/2-use/src/pages/Profile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2-use/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/2-use/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2-use/src/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/2-use/src/components/Navbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2-use/src/pages/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/2-use/src/pages/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2-use/src/pages/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/2-use/src/pages/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2-use/src/pages/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/2-use/src/pages/Register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/models/Users.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/Users.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/routes/Users.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/Users.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +71,7 @@
       <updated>1644696936160</updated>
       <workItem from="1644696939579" duration="56746000" />
       <workItem from="1645654551611" duration="742000" />
-      <workItem from="1646691901720" duration="2825000" />
+      <workItem from="1646691901720" duration="20490000" />
     </task>
     <servers />
   </component>
@@ -91,7 +95,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/backend/routes/Users.js</url>
-          <line>51</line>
+          <line>54</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

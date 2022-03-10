@@ -85,11 +85,17 @@ const Button = styled.button`
 const Navbar = () => {
     
     const { loggedIn, setLoggedIn } = useContext(LoginContext)
+    console.log("hellllloooooo")
+    console.log(loggedIn.hasToken)
 
     const logOut = () => {
         localStorage.setItem("token", "")
-        setLoggedIn(false)
+        setLoggedIn({
+            hasToken: false,
+            userId: undefined
+        })
     }
+    
     
     return (
       <Container>
@@ -108,8 +114,13 @@ const Navbar = () => {
             </Link>
           </Center>
             {
-                loggedIn ? (
+                loggedIn.hasToken ? (
                     <Right>
+                        <Link to="/Profile">
+                            <Button type="button" className="btn btn-info">
+                                Profile
+                            </Button>
+                        </Link>
                             <Button onClick={logOut}>
                                 Log out
                             </Button>

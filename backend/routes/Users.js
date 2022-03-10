@@ -7,9 +7,10 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
-
 const jwt = require('jsonwebtoken')
 router.use(express.json())
+
+
 
 const { sign } = require('jsonwebtoken')
 
@@ -39,7 +40,7 @@ router.use(session(
  ))
 
 router.post('/register', async (req,res) => {
-   const {username, password} = req.body
+   const { username, password, university, age} = req.body
 
    //checks if the username is unique
    const user = await Users.findOne({ where: {username: username}})
@@ -47,8 +48,10 @@ router.post('/register', async (req,res) => {
 
    bcrypt.hash(password, 10).then((hash) => {
       Users.create({
-         username: username,
+          username: username,
          password: hash,
+          university: university,
+          age: age,
       })
       res.json("Success")
    })
@@ -71,7 +74,7 @@ router.post('/register', async (req,res) => {
      }
  }
 
-router.get('/isUserAuth', verifyJWT, (req,res) => {
+router.get("/isUserAuth", verifyJWT, (req,res) => {
      res.send("You are anthenticated Congrats")
  })
 
@@ -103,14 +106,18 @@ router.post('/login', async (req, res) => {
    }
 })
 
-router.get("/basicinfo/:id", async (req,res) => {
-    const id = req.params.id
+router.get("/profile", verifyJWT, async (req, res) => {
+
+    //const user = await User.findById(req.data.id);
+    const id = req.userId
 
     const basicInfo = await Users.findByPk(id, {
         attributes: {exclude: ["password"]},
     })
     res.json(basicInfo)
-})
+});
+
+
 
 module.exports = router
 

@@ -16,6 +16,8 @@ const Register = () => {
         name: "",
         password: "",
         passwordAgain: "",
+        university:"",
+        age: "",
     });
 
     const handleSubmit = async (e) => {
@@ -25,6 +27,9 @@ const Register = () => {
             const newUser = {
                 username: user.name,
                 password: user.password,
+                university: user.university,
+                age: user.age,
+                
             };
 
             if (user.password !== user.passwordAgain) {
@@ -37,22 +42,24 @@ const Register = () => {
             console.log("new user reged")
             const loginResponse = await axios.post('http://localhost:3001/auth/login',
                 newUser);
-
+            console.log(loginResponse)
             console.log("made it passed login")
-            /*setUserData({
-                token: loginResponse.data.token,
-                user: loginResponse.data.result,
-            });*/
 
             localStorage.setItem("token", loginResponse.data.token);
-            setLoggedIn(true)
+            setLoggedIn({
+                hasToken: true,
+                userId: user.id
+            })
 
             setUser({
-                name: "",
+                username: "",
                 password: "",
                 passwordAgain: "",
+                university: "",
+                age:"",
+                
             });
-            
+
         } catch (err) {
             console.log("We have some error!");
         }
@@ -71,35 +78,53 @@ const Register = () => {
     return (
         <div className="App">
             <NavbarLogin/>
-            <div className="Registration">
-
-                <h1>Registration</h1>
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Ex. murphr64@tcd.ie"
-                    value={user.name}
-                    required
-                    onChange={handleChange}
+            <div >
+                <h1>Register</h1>
+                <input type="text"
+                       name="name"
+                       placeholder="dslkjfdsk@tcd.ie"
+                       value={user.name}
+                       required
+                       onChange={handleChange}
                 />
-
                 <h1>Password</h1>
                 <input
                     type="password"
                     name="password"
-                    placeholder="Ex. dhfksddskhjf"
+                    placeholder="djhfksd"
                     value={user.password}
                     onChange={handleChange}
                 />
 
                 <h1>Password Again</h1>
+                         <input
+                             type="password"
+                             name="passwordAgain"
+                             placeholder="Ex. dhfksddskhjf"
+                             value={user.passwordAgain}
+                             onChange={handleChange}
+                         />
+
+                <h1>university</h1>
                 <input
-                    type="password"
-                    name="passwordAgain"
+                    type="text"
+                    name="university"
                     placeholder="Ex. dhfksddskhjf"
-                    value={user.passwordAgain}
+                    value={user.university}
                     onChange={handleChange}
                 />
+
+                <h1>Age</h1>
+                <input
+                    type="text"
+                    name="age"
+                    placeholder="Ex. dhfksddskhjf"
+                    value={user.age}
+                    onChange={handleChange}
+                />
+
+
+
 
                 <button onClick={handleSubmit}>Register</button>
             </div>
