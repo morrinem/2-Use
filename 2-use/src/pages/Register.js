@@ -10,7 +10,9 @@ import Footer from '../components/Footer'
 const Register = () => {
    // const { userData, setUserData } = useContext(UserContext);
     const { loggedIn, setLoggedIn }= useContext(LoginContext)
-
+    
+    const [image, setImage] = useState({ preview: '', data: '' })
+    const [status, setStatus] = useState('')
 
     const [user, setUser] = useState({
         name: "",
@@ -20,6 +22,17 @@ const Register = () => {
         age: "",
     });
 
+    const handleImageSubmit = async (e) => {
+        e.preventDefault()
+        let formData = new FormData()
+        formData.append('file', image.data)
+        const response = await fetch('http://localhost:3001/auth/image', {
+            method: 'POST',
+            body: formData,
+        })
+
+        if (response) setStatus(response.statusText)
+    }
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -64,7 +77,15 @@ const Register = () => {
             console.log("We have some error!");
         }
     };
-
+    
+    const handleFileChange = (e) => {
+        const img = {
+            preview: URL.createObjectURL(e.target.files[0]),
+            data: e.target.files[0],
+        }
+        setImage(img)
+    }
+    
     const handleChange = (e) => {
         const { name, value } = e.target;
         setUser((oldUser) => {
@@ -123,7 +144,14 @@ const Register = () => {
                     onChange={handleChange}
                 />
 
-
+                <h1>Profile Photo</h1>
+                {image.preview && <img src={image.preview} width='100' height='100' />}
+                <hr></hr>
+                <form onSubmit={handleImageSubmit}>
+                    <input type='file' name='file' onChange={handleFileChange}></input>
+                    <button type='submit'>Submit</button>
+                </form>
+                {status && <h4>{status}</h4>}
 
 
                 <button onClick={handleSubmit}>Register</button>

@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const { Users } = require('../models')
 const bcrypt = require('bcrypt')
+const multer = require('multer')
 
 const cors = require('cors')
 const bodyParser = require('body-parser')
@@ -14,6 +15,16 @@ router.use(express.json())
 
 const { sign } = require('jsonwebtoken')
 
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'images/')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname)
+    },
+})
+
+const upload = multer({ storage: storage })
 
 
 router.use(cors(
@@ -55,6 +66,10 @@ router.post('/register', async (req,res) => {
       })
       res.json("Success")
    })
+})
+
+router.post('/image', upload.single('file'), function (req, res) {
+    res.json({})
 })
 
  const verifyJWT = (req, res, next) => {
