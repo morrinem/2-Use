@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2662e2a1-d7df-432b-96d1-29ac6aacdbb9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/2-use/src/pages/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/2-use/src/pages/Register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/images/covidcert.PNG" beforeDir="false" />
-    </list>
+    <list default="true" id="2662e2a1-d7df-432b-96d1-29ac6aacdbb9" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
