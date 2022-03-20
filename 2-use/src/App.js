@@ -10,6 +10,8 @@ import { LoginContext } from './Helper/Context'
 import Register from './pages/Register'
 import Profile from './pages/Profile'
 import Posts from './pages/Posts'
+import CreatePosts from './pages/CreatePosts'
+import Post from './pages/Post'
 import axios from "axios"
 
 /* 
@@ -70,6 +72,8 @@ function App() {
             <Route path='/Register' exact component={Register} />
             <Route path='/Profile' exact component={Profile} />
             <Route path='/Posts' exact component={Posts} />
+            <Route path='/CreatePosts' exact component={CreatePosts} />
+            <Route path='/Post/:id' exact component={Post} />
         </Router>
 
       </LoginContext.Provider>
