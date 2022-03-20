@@ -9,6 +9,7 @@ import React, { createContext, useState,useEffect } from 'react'
 import { LoginContext } from './Helper/Context'
 import Register from './pages/Register'
 import Profile from './pages/Profile'
+import Posts from './pages/Posts'
 import axios from "axios"
 
 /* 
@@ -68,6 +69,7 @@ function App() {
             <Route path='/About' exact component={About} />
             <Route path='/Register' exact component={Register} />
             <Route path='/Profile' exact component={Profile} />
+            <Route path='/Posts' exact component={Posts} />
         </Router>
 
       </LoginContext.Provider>
