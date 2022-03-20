@@ -15,7 +15,7 @@ const Login = () => {
         name: "",
         password: "",
     });
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -26,19 +26,18 @@ const Login = () => {
             };
 
             const loginResponse = await axios.post('http://localhost:3001/auth/login', newUser);
-          
-            /*setUserData({
-                token: loginResponse.data.token,
-                user: loginResponse.data.result,
-            });*/
+
             localStorage.setItem("token", loginResponse.data.token);
 
             setUser({
                 name: "",
                 password: "",
             });
-            setLoggedIn(true)
-            
+            setLoggedIn({
+                hasToken: true,
+                userId: user.id
+            })
+
         } catch (err) {
             console.log("We have an error!");
         }

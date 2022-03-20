@@ -2,26 +2,32 @@ const express = require('express')
 const router = express.Router()
 const { Users } = require('../models')
 const bcrypt = require('bcrypt')
+const multer = require('multer')
+const {verifyJWT} = require('../middlewares/AuthMiddleware')
 
-const cors = require('cors')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
-
 const jwt = require('jsonwebtoken')
+
 router.use(express.json())
+
+
 
 const { sign } = require('jsonwebtoken')
 
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'images/')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname)
+    },
+})
+
+const upload = multer({ storage: storage })
 
 
-router.use(cors(
-     {
-         origin: ["http://localhost:3000"],
-         methods: ["GET", "POST"],
-         credentials: true
-     }
- ))
 router.use(cookieParser())
 router.use(bodyParser.urlencoded({ extended: true}))
 
@@ -39,7 +45,7 @@ router.use(session(
  ))
 
 router.post('/register', async (req,res) => {
-   const {username, password} = req.body
+   const { username, password, university, age} = req.body
 
    //checks if the username is unique
    const user = await Users.findOne({ where: {username: username}})
@@ -47,35 +53,20 @@ router.post('/register', async (req,res) => {
 
    bcrypt.hash(password, 10).then((hash) => {
       Users.create({
-         username: username,
+          username: username,
          password: hash,
+          university: university,
+          age: age,
       })
       res.json("Success")
    })
 })
 
- const verifyJWT = (req, res, next) => {
-     const token = req.headers["x-access-token"]
+router.post('/image', upload.single('file'), function (req, res) {
+    res.json({})
+})
 
-     if(!token) {
-         res.send("Yo, we need a token, please give it next time")
-     } else {
-         jwt.verify(token, "tochange", (err, decoded) => {
-             if(err){
-                 res.json({auth: false, message: "failed auth" })
-             }else{
-                 req.userId = decoded.id
-                 next()
-             }
-         })
-     }
- }
-
-router.get('/isUserAuth', verifyJWT, (req,res) => {
-     res.send("You are anthenticated Congrats")
- })
-
-router.get("/login", (req, res) => {
+ router.get("/login", (req, res) => {
      if(req.session.user){
          res.send({loggedIn: true, user: req.session.user})
 
@@ -102,6 +93,19 @@ router.post('/login', async (req, res) => {
       })
    }
 })
+
+router.get("/profile", verifyJWT, async (req, res) => {
+
+    //const user = await User.findById(req.data.id);
+    const id = req.user.id
+
+    const basicInfo = await Users.findByPk(id, {
+        attributes: {exclude: ["password"]},
+    })
+    res.json(basicInfo)
+});
+
+
 
 module.exports = router
 

@@ -5,9 +5,15 @@ import Login from "./pages/Login"
 import ProductList from "./pages/ProductList";
 import Product from "./pages/Product";
 import About from "./pages/About";
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState,useEffect } from 'react'
 import { LoginContext } from './Helper/Context'
 import Register from './pages/Register'
+import Profile from './pages/Profile'
+import Posts from './pages/Posts'
+import CreatePosts from './pages/CreatePosts'
+import Post from './pages/Post'
+import axios from "axios"
+
 /* 
 Replace <Home/> below with <ProductPage/> to view the product page
 I'll link it up with the home page after
@@ -15,8 +21,43 @@ I'll link it up with the home page after
 */
 
 function App() {
-    const token = localStorage.getItem('token')
-    const [loggedIn, setLoggedIn] = useState(token ? true : false)
+    
+    const [loggedIn, setLoggedIn] = useState({
+        hasToken: false,
+        userId: undefined,
+    })
+    console.log("dhfksjhfjdkhsjk")
+
+    useEffect(() => {
+        const info = async () => {
+            const token = localStorage.getItem('token')
+            console.log("token is ", token)
+            if(token != undefined && token.length > 2){
+                console.log("token is not null")
+                const userResponse = await axios.get('http://localhost:3001/auth/profile',
+                    {headers: {"x-access-token": token}}
+                )
+                if(userResponse.data){
+                    setLoggedIn({
+                        hasToken: true,
+                        userId:  userResponse.data
+                    })
+                }
+                console.log("userResponse.data is " + userResponse.data)
+                
+            }else{
+                setLoggedIn({
+                    hasToken: false,
+                    userId: undefined
+                })
+            }
+            
+            
+            console.log("hihihihi")
+        }
+        info()
+    },[])
+    
     
   return (
     
@@ -29,6 +70,10 @@ function App() {
             <Route path='/Product' exact component={Product} />
             <Route path='/About' exact component={About} />
             <Route path='/Register' exact component={Register} />
+            <Route path='/Profile' exact component={Profile} />
+            <Route path='/Posts' exact component={Posts} />
+            <Route path='/CreatePosts' exact component={CreatePosts} />
+            <Route path='/Post/:id' exact component={Post} />
         </Router>
 
       </LoginContext.Provider>
