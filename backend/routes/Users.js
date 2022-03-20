@@ -3,12 +3,13 @@ const router = express.Router()
 const { Users } = require('../models')
 const bcrypt = require('bcrypt')
 const multer = require('multer')
+const {verifyJWT} = require('../middlewares/AuthMiddleware')
 
-const cors = require('cors')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const jwt = require('jsonwebtoken')
+
 router.use(express.json())
 
 
@@ -27,13 +28,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 
-router.use(cors(
-     {
-         origin: ["http://localhost:3000"],
-         methods: ["GET", "POST"],
-         credentials: true
-     }
- ))
 router.use(cookieParser())
 router.use(bodyParser.urlencoded({ extended: true}))
 
@@ -72,28 +66,7 @@ router.post('/image', upload.single('file'), function (req, res) {
     res.json({})
 })
 
- const verifyJWT = (req, res, next) => {
-     const token = req.headers["x-access-token"]
-
-     if(!token) {
-         res.send("Yo, we need a token, please give it next time")
-     } else {
-         jwt.verify(token, "tochange", (err, decoded) => {
-             if(err){
-                 res.json({auth: false, message: "failed auth" })
-             }else{
-                 req.userId = decoded.id
-                 next()
-             }
-         })
-     }
- }
-
-router.get("/isUserAuth", verifyJWT, (req,res) => {
-     res.send("You are anthenticated Congrats")
- })
-
-router.get("/login", (req, res) => {
+ router.get("/login", (req, res) => {
      if(req.session.user){
          res.send({loggedIn: true, user: req.session.user})
 
@@ -124,7 +97,7 @@ router.post('/login', async (req, res) => {
 router.get("/profile", verifyJWT, async (req, res) => {
 
     //const user = await User.findById(req.data.id);
-    const id = req.userId
+    const id = req.user.id
 
     const basicInfo = await Users.findByPk(id, {
         attributes: {exclude: ["password"]},

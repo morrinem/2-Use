@@ -7,10 +7,10 @@ const CreatePosts = () => {
     const initialValues = {
         title: "",
         postText: "",
-        username: "",
     };
+    const token = localStorage.getItem('token')
     const onSubmit = (data) => {
-        axios.post("http://localhost:3001/posts", data).then((response) => {
+        axios.post("http://localhost:3001/posts", data, {headers: {"x-access-token": token}}).then((response) => {
             console.log("IT WORKED");
         });
     };
@@ -38,15 +38,6 @@ const CreatePosts = () => {
                         name="postText"
                         placeholder="(Ex. Post...)"
                     />
-                    <label>Username: </label>
-                    <ErrorMessage name="username" component="span" />
-                    <Field
-                        autocomplete="off"
-                        id="inputCreatePost"
-                        name="username"
-                        placeholder="(Ex. John123...)"
-                    />
-
                     <button type="submit"> Create Post</button>
                 </Form>
             </Formik>

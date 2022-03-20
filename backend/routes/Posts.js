@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const { Posts } = require('../models')
+const {verifyJWT} = require('../middlewares/AuthMiddleware')
 
 router.use(express.json())
 
@@ -19,8 +20,10 @@ router.get('/byId/:id', async (req,res) => {
 })
 
 
-router.post("/", async (req, res) => {
+router.post("/", verifyJWT, async (req, res) => {
     const post = req.body
+    const username = req.user.username
+    post.username = username
     await Posts.create(post)
     res.json(post)
 })

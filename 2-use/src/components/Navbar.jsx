@@ -116,6 +116,16 @@ const Navbar = () => {
             {
                 loggedIn.hasToken ? (
                     <Right>
+                        <Link to="/Posts">
+                            <Button type="button" className="btn btn-info">
+                                Posts
+                            </Button>
+                        </Link>
+                        <Link to="/CreatePosts">
+                            <Button type="button" className="btn btn-info">
+                                Create Post
+                            </Button>
+                        </Link>
                         <Link to="/Profile">
                             <Button type="button" className="btn btn-info">
                                 Profile
@@ -134,16 +144,7 @@ const Navbar = () => {
                     </Right>
                 ) : (
                     <Right>
-                        <Link to="/Posts">
-                            <Button type="button" className="btn btn-info">
-                                Posts
-                            </Button>
-                        </Link>
-                        <Link to="/CreatePosts">
-                            <Button type="button" className="btn btn-info">
-                                Create Post
-                            </Button>
-                        </Link>
+
                         <Link to="/Register">
                             <Button type="button" className="btn btn-info">
                                 REGISTER
