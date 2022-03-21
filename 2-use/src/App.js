@@ -8,6 +8,7 @@ import About from "./pages/About";
 import React, { createContext, useState,useEffect } from 'react'
 import { LoginContext } from './Helper/Context'
 import Register from './pages/Register'
+import Sell from './pages/Sell'
 import Profile from './pages/Profile'
 import Posts from './pages/Posts'
 import CreatePosts from './pages/CreatePosts'
@@ -74,6 +75,7 @@ function App() {
             <Route path='/Posts' exact component={Posts} />
             <Route path='/CreatePosts' exact component={CreatePosts} />
             <Route path='/Post/:id' exact component={Post} />
+            <Route path='/Sell' exact component={Sell} />
         </Router>
 
       </LoginContext.Provider>

@@ -120,7 +120,7 @@ const Slider = () => {
                             <Link to="/ProductList">
                             <Button type="button" className="btn btn-info">BUY</Button>
                             </Link>
-                            <Link to="/ProductList">
+                            <Link to="/Sell">
                             <Button type="button" className="btn btn-info">SELL</Button>
                             </Link>
                             <Link to="/About">
