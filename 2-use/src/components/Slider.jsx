@@ -126,6 +126,9 @@ const Slider = () => {
                             <Link to="/About">
                             <Button type="button" className="btn btn-info">ABOUT US</Button>
                             </Link>
+                            <Link to="/Payment">
+                            <Button type="button" className="btn btn-info">PAYMENT</Button>
+                            </Link>
                         </InfoContaiiner>
                     </Slide>
                 ))}
