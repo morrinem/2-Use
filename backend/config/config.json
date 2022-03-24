@@ -13,11 +13,11 @@
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
-  "production": {
-    "username": "root",
-    "password": "null",
-    "database": "database_production",
-    "host": "127.0.0.1",
+  "dev-online": {
+    "username": "admin",
+    "password": "oZ3YNOdDNV7c8gXyWPaL",
+    "database": "data",
+    "host": "sweng-2use.c7pxu4xrnnvy.eu-west-1.rds.amazonaws.com",
     "dialect": "mysql"
   }
 }
