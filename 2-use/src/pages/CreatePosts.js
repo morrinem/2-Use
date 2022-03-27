@@ -7,6 +7,7 @@ const CreatePosts = () => {
     const initialValues = {
         title: "",
         postText: "",
+        price:""
     };
     const token = localStorage.getItem('token')
     const onSubmit = (data) => {
@@ -37,6 +38,13 @@ const CreatePosts = () => {
                         id="inputCreatePost"
                         name="postText"
                         placeholder="(Ex. Post...)"
+                    />
+                    <label>Price: </label>
+                    <Field
+                        autocomplete="off"
+                        id="inputCreatePost"
+                        name="price"
+                        placeholder="(Ex. 23.50...)"
                     />
                     <button type="submit"> Create Post</button>
                 </Form>

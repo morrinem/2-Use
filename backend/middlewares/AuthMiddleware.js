@@ -1,3 +1,4 @@
+require("dotenv").config()
 const jwt = require('jsonwebtoken')
 
 const verifyJWT = (req, res, next) => {
@@ -6,7 +7,7 @@ const verifyJWT = (req, res, next) => {
     if(!token) {
         res.send("Yo, we need a token, please give it next time")
     } else {
-        jwt.verify(token, "tochange", (err, decoded) => {
+        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
             if(err){
                 res.json({auth: false, message: "failed auth" })
             }else{

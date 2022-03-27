@@ -1,4 +1,4 @@
-require('dotenv').config()
+require("dotenv").config()
 const express = require("express")
 const router = express.Router()
 const { Posts } = require('../models')
@@ -10,33 +10,53 @@ router.use(express.json())
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 
 const storeItems = new Map([
-  [1, { priceInCents: 10000, name: "Learn React Today" }],
-  [2, { priceInCents: 20000, name: "Learn CSS Today" }],
+  [1, { priceInCents: 1000, name: "Learn React Today" }],
+  [2, { priceInCents: 2000, name: "Learn CSS Today" }],
 ])
 
 
 router.post("/create-checkout-session", async (req, res) => {
     try {
-      const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
-        mode: "payment",
-        line_items: req.body.items.map(item => {
-          const storeItem = storeItems.get(item.id)
-          return {
-            price_data: {
-              currency: "usd",
-              product_data: {
-                name: storeItem.name,
-              },
-              unit_amount: storeItem.priceInCents,
-            },
-            quantity: item.quantity,
-          }
-        }),
-        success_url: "http://localhost:3000",
-        cancel_url: "http://localhost:3000",
-      })
-      res.json({ url: session.url })
+        var post
+        var title
+        var price
+        req.body.items.map( async item => {
+            post = await Posts.findOne({where: {id: item.id}}).then(async (res) =>{
+                title = res.dataValues.title
+                price = parseInt(res.dataValues.price)
+
+                }
+                
+            ).then(async () => {
+                const session = await stripe.checkout.sessions.create({
+                    payment_method_types: ["card"],
+                    mode: "payment",
+                    line_items: req.body.items.map(  item => {
+
+                        const storeItem = storeItems.get(item.id)
+
+                        return {
+                            price_data: {
+                                currency: "usd",
+                                product_data: {
+                                    name: title,
+                                },
+                                unit_amount: price,
+                            },
+                            quantity: 1,
+                        }
+                    }),
+                    success_url: `${process.env.CLIENT_URL}/posts`,
+                    cancel_url: `${process.env.CLIENT_URL}/posts`,
+                })
+                res.json({ url: session.url })
+            })
+            
+        })
+
+        
+
+     
     } catch (e) {
       res.status(500).json({ error: e.message })
     }
@@ -58,7 +78,9 @@ router.get('/byId/:id', async (req,res) => {
 router.post("/", verifyJWT, async (req, res) => {
     const post = req.body
     const username = req.user.username
+    const price = (post.price * 100)
     post.username = username
+    post.price = price.toString()
     await Posts.create(post)
     res.json(post)
 })
