@@ -31,16 +31,23 @@ const Image = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 30px;
     ${mobile({height:"20vh"})};
 `
 
 const Button = styled.button`
-    border: none;
+    border-color: teal;
     padding: 10px;
     background-color: white;
-    color: gray;
+    font-size: 18px;
+    color: teal;
     cursor: pointer;
     font-weight: 600;
+    border-radius: 30px;
+    &:hover{
+        background-color: white;
+        transform: scale(1.2);
+    }
 `
 
 

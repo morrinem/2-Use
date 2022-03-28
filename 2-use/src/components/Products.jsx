@@ -5,10 +5,19 @@ import { popularProducts } from '../data'
 import Product from './Product'
 
 const Container = styled.div`
-    padding: 20px;
+    padding: 10px;
     display: flex;
-    flex-wrap: wrap; //pour que les products retourne à la ligne
+    flex-wrap: wrap;
     justify-content: space-between;
+
+`
+const InfoContaiiner = styled.div`
+    flex: 1;
+    padding: 50px;
+`
+
+const Title = styled.h1`
+    font-size: 70px;
 `
 
 const Products = () => {
