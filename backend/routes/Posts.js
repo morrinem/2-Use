@@ -7,7 +7,7 @@ const {verifyJWT} = require('../middlewares/AuthMiddleware')
 router.use(express.json())
 
 
-const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
+const stripe = require("stripe")("sk_test_51KgYZOIYz2lJZsruoI7jmke5oBRL2CHiSYeeekhkmiDiF3CG3bf0KjNOofXFQvK2iW7mNAczq9WocOE4fSXVaLSZ00CM9Qb2hz")
 
 const storeItems = new Map([
   [1, { priceInCents: 1000, name: "Learn React Today" }],
@@ -22,11 +22,12 @@ router.post("/create-checkout-session", async (req, res) => {
         var price
         req.body.items.map( async item => {
             post = await Posts.findOne({where: {id: item.id}}).then(async (res) =>{
+
                 title = res.dataValues.title
                 price = parseInt(res.dataValues.price)
 
                 }
-                
+
             ).then(async () => {
                 const session = await stripe.checkout.sessions.create({
                     payment_method_types: ["card"],
@@ -46,6 +47,7 @@ router.post("/create-checkout-session", async (req, res) => {
                             quantity: 1,
                         }
                     }),
+
                     success_url: `${process.env.CLIENT_URL}/posts`,
                     cancel_url: `${process.env.CLIENT_URL}/posts`,
                 })
@@ -54,9 +56,7 @@ router.post("/create-checkout-session", async (req, res) => {
             
         })
 
-        
-
-     
+       
     } catch (e) {
       res.status(500).json({ error: e.message })
     }

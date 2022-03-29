@@ -1,7 +1,52 @@
 import React, {useEffect, useState,useContext} from 'react'
+import styled from 'styled-components'
 import { useParams } from "react-router-dom"
 import axios from 'axios'
 import { UserContext, LoginContext } from '../Helper/Context';
+import Background from "../images/image2.png"
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+import { mobile } from '../responsive'
+import logo from '../images/image2.png';
+import cse from '../images/image2.png';
+
+
+const Container = styled.div`
+    width: 100vw;
+    height: 50vh;
+    background:linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url(${Background}) center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat:no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+`
+
+const Wrapper = styled.div`
+    width: 50%;
+    padding: 20px;
+    background-color: white;
+    border-radius: 30px;
+    ${mobile({width:"50%"})};
+`
+
+
+const Title = styled.h1`
+    font-size: 30px;
+    font-weight: 300;
+    color: teal;
+    text-align: center;
+    
+`
+
+const Description = styled.span`
+    text-align: center;
+    font-size: 20px;
+    margin: 20px 0px;
+    color: teal;
+`
 
 function  Profile() {
     const {loggedIn, setLoggedIn }= useContext(LoginContext)
@@ -32,15 +77,19 @@ function  Profile() {
         }
         profileInfo()
     },[])
-    
-    return(
-        <div className="profileContainer">
-            <div className="basicInfo">
-                <h1> Username: {username}</h1>
-                <h1>Age: {userage}</h1>
-                <h1>University: {university}</h1>
-            </div>
-
+    return (
+    <div>
+        <Navbar/>
+        <Container>
+            <Wrapper>
+                <Title><b>My Profile</b><br/><br/>
+                Username: {username}<br/><br/>
+                Age: {userage}<br/><br/>
+                University: {university}
+                </Title>
+            </Wrapper>
+        </Container>
+        <Footer/>
         </div>
     )
 }

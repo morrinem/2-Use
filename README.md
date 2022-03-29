@@ -21,7 +21,7 @@ If this doesn't work then the node modules weren't installed so try this
 
 **cd 2-Use**
 
-**run "npm -i"**
+**npm -i**
 
 **ng serve**
 

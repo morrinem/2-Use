@@ -11,12 +11,12 @@ import { LoginContext } from '../Helper/Context'
 import {mobile} from '../responsive'
 
 const Container = styled.div`
-    height: 60px;
+    height: 65px;
     ${mobile({height:"50px"})};
 `
 
 const Wrapper = styled.div`
-    padding: 10px 20px;
+    padding: 5px 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -30,11 +30,12 @@ const Left = styled.div`
 `
 
 const SearchContainer = styled.div`
-    border: 0.5px solid lightgray;
+    border: 2px solid lightgray;
     display: flex;
     align-items: center;
-    margin-left: 25px;
-    padding: px;
+    margin-left: 10px;
+    padding: 0px;
+    border-radius: 30px;
 `
 
 const Input = styled.input`
@@ -73,11 +74,22 @@ const MenuItem = styled.div`
     ${mobile({fontSize:"12px",marginLeft:"10px"})};
 `
 const Button = styled.button`
-    padding: 0px;
-    font-size: 20px;
-    background-color: teal;
+    padding: 5px;
+    font-size: 18px;
+    background-color: transparent;
     cursor: pointer;
     margin: 10px;
+    border-radius: 30px;
+    &:hover{
+        background-color: #ced4c5;
+        transform: scale(1.2);
+    }
+`
+const Image = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    ${mobile({height:"20vh"})};
 `
 
 
@@ -110,7 +122,7 @@ const Navbar = () => {
           <Center>
             <Link to="/">
               <Logo type="button" className="btn btn-info">
-                2USE.
+                2USE
               </Logo>
             </Link>
           </Center>
@@ -156,6 +168,9 @@ const Navbar = () => {
                                 LOGIN
                             </Button>
                         </Link>
+                        <Link to="/About">
+                            <Button type="button" className="btn btn-info">ABOUT US</Button>
+                            </Link>
                         <MenuItem>
                             <Badge badgeContent={0} color="primary">
                                 <Link to="/Product">
