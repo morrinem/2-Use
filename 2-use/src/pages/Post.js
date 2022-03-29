@@ -17,6 +17,7 @@ function Post() {
                 <div className="post" id="individual">
                     <div className="title"> {postObject.title} </div>
                     <div className="body">{postObject.postText}</div>
+                    <div className="body">{postObject.price}</div>
                     <div className="footer">{postObject.username}</div>
                 </div>
             </div>

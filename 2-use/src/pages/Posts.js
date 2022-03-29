@@ -23,6 +23,7 @@ const Posts = () => {
                 }>
                   <div className="title">{value.title}</div>
                     <div className="body">{value.postText}</div>
+                    <div className="price">{value.price}</div>
                     <div className="footer">{value.username}</div>
                 </div>})}
         </div>
