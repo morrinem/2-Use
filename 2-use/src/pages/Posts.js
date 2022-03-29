@@ -24,7 +24,8 @@ const Posts = () => {
             },
             body: JSON.stringify({
               items: [
-                { id: valueId, quantity: 1 },
+
+                  { id: valueId, quantity: 1 },
               ],
             }),
           })
@@ -47,6 +48,7 @@ const Posts = () => {
                   <div className="title">{value.title}</div>
                     <div className="body">{value.postText}</div>
                     <div className="footer">{value.username}
+
                     <button onClick={handleSubmit(value.id)}>checkout</button>
                     </div>
                 </div>})}

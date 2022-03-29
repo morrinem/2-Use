@@ -5,7 +5,7 @@ import { mobile } from '../responsive'
 
 const Container = styled.div`
     height: 40vh;
-    background-color:teal;
+    background-color:#ced4c5;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,6 +35,7 @@ const InputContainer = styled.div`
 `
 
 const Input = styled.input`
+    padding: 0px;
     border: none;
     flex: 8;
     padding-left: 20px;
@@ -43,16 +44,20 @@ const Input = styled.input`
 const Button = styled.button`
     flex: 1;
     border: none;
-    background-color: teal;
+    background-color: #ced4c5;
     color: white;
     cursor: pointer;
+    &:hover{
+        background-color: teal;
+        transform: scale(1.5);
+    }
 `
 
 const Newsletter = () => {
     return (
         <Container>
-            <Title>Newsletter</Title>
-            <Desc>Get updates on how we are growing.</Desc>
+            <Title>Stay in the know</Title>
+            <Desc>Sign up for our newsletter to get the latest updates.</Desc>
             <InputContainer>
                 <Input placeholder='Your email'/>
                 <Button>

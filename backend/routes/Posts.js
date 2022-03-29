@@ -22,11 +22,12 @@ router.post("/create-checkout-session", async (req, res) => {
         var price
         req.body.items.map( async item => {
             post = await Posts.findOne({where: {id: item.id}}).then(async (res) =>{
+
                 title = res.dataValues.title
                 price = parseInt(res.dataValues.price)
 
                 }
-                
+
             ).then(async () => {
                 const session = await stripe.checkout.sessions.create({
                     payment_method_types: ["card"],
@@ -48,15 +49,14 @@ router.post("/create-checkout-session", async (req, res) => {
                     }),
                     success_url: "http://localhost:3000",
                     cancel_url: "http://localhost:3000",
+
                 })
                 res.json({ url: session.url })
             })
             
         })
 
-        
-
-     
+       
     } catch (e) {
       res.status(500).json({ error: e.message })
     }

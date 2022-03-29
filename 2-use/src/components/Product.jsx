@@ -11,7 +11,7 @@ const Info = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0,0,0,0.2);
+    background-color: transparent;
     z-index: 3;
     display: flex;
     align-items: center;
@@ -28,7 +28,7 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f5fbfd;
+    background-color: white;
     position: relative;
 
     &:hover ${Info}{
@@ -64,8 +64,8 @@ const Icon = styled.div`
     transition: all 0.5s ease;
 
     &:hover{
-        background-color: #e9f5f5;
-        transform: scale(1.1);
+        background-color: teal;
+        transform: scale(1.2);
     }
 `
 
