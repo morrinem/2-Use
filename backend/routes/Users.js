@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require('express')
 const router = express.Router()
 const { Users } = require('../models')
@@ -34,7 +35,7 @@ router.use(bodyParser.urlencoded({ extended: true}))
 router.use(session(
      {
            key: "userId",
-           secret: "tochange",
+           secret: process.env.JWT_SECRET,
            resave: false,
            saveUninitialized: false,
            //cookie expires in 24 hours
@@ -87,7 +88,7 @@ router.post('/login', async (req, res) => {
       bcrypt.compare(password, user.password).then((match) => {
          if (!match) res.json({auth: false, message: "wrong username/password combo"})
 
-         const token = sign({username: user.username, id: user.id}, "tochange")
+         const token = sign({username: user.username, id: user.id}, process.env.JWT_SECRET)
          req.session.user = user
          res.json({auth: true, token: token, result: user})
       })

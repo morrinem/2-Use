@@ -1,4 +1,4 @@
-require('dotenv').config()
+require("dotenv").config()
 const express = require("express")
 const router = express.Router()
 const { Posts } = require('../models')
@@ -10,8 +10,8 @@ router.use(express.json())
 const stripe = require("stripe")("sk_test_51KgYZOIYz2lJZsruoI7jmke5oBRL2CHiSYeeekhkmiDiF3CG3bf0KjNOofXFQvK2iW7mNAczq9WocOE4fSXVaLSZ00CM9Qb2hz")
 
 const storeItems = new Map([
-  [1, { priceInCents: 10000, name: "Learn React Today" }],
-  [2, { priceInCents: 20000, name: "Learn CSS Today" }],
+  [1, { priceInCents: 1000, name: "Learn React Today" }],
+  [2, { priceInCents: 2000, name: "Learn CSS Today" }],
 ])
 
 
@@ -22,8 +22,9 @@ router.post("/create-checkout-session", async (req, res) => {
         var price
         req.body.items.map( async item => {
             post = await Posts.findOne({where: {id: item.id}}).then(async (res) =>{
-                    title = res.dataValues.title
-                    price = parseInt(res.dataValues.price)
+
+                title = res.dataValues.title
+                price = parseInt(res.dataValues.price)
 
                 }
 
@@ -46,14 +47,16 @@ router.post("/create-checkout-session", async (req, res) => {
                             quantity: 1,
                         }
                     }),
-                    success_url: "http://localhost:3000",
-                    cancel_url: "http://localhost:3000",
+
+                    success_url: `${process.env.CLIENT_URL}/posts`,
+                    cancel_url: `${process.env.CLIENT_URL}/posts`,
                 })
                 res.json({ url: session.url })
             })
-
+            
         })
 
+       
     } catch (e) {
       res.status(500).json({ error: e.message })
     }
