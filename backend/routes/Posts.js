@@ -7,7 +7,7 @@ const {verifyJWT} = require('../middlewares/AuthMiddleware')
 router.use(express.json())
 
 
-const stripe = require("stripe")("sk_test_51KiIKpI9aB5NdcmJ27xEhiP12nzy8uPedwBmQRy2CUMkVJ5Y50iUFrUuDncQnZJywgNQmTuhYNIbubOw5tDxmktB00aTk6Mx3H")
+const stripe = require("stripe")("sk_test_51KgYZOIYz2lJZsruoI7jmke5oBRL2CHiSYeeekhkmiDiF3CG3bf0KjNOofXFQvK2iW7mNAczq9WocOE4fSXVaLSZ00CM9Qb2hz")
 
 const storeItems = new Map([
   [1, { priceInCents: 10000, name: "Learn React Today" }],
@@ -17,26 +17,43 @@ const storeItems = new Map([
 
 router.post("/create-checkout-session", async (req, res) => {
     try {
-      const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
-        mode: "payment",
-        line_items: req.body.items.map(item => {
-          const storeItem = storeItems.get(item.id)
-          return {
-            price_data: {
-              currency: "usd",
-              product_data: {
-                name: storeItem.name,
-              },
-              unit_amount: storeItem.priceInCents,
-            },
-            quantity: item.quantity,
-          }
-        }),
-        success_url: "http://localhost:3000",
-        cancel_url: "http://localhost:3000",
-      })
-      res.json({ url: session.url })
+        var post
+        var title
+        var price
+        req.body.items.map( async item => {
+            post = await Posts.findOne({where: {id: item.id}}).then(async (res) =>{
+                    title = res.dataValues.title
+                    price = parseInt(res.dataValues.price)
+
+                }
+
+            ).then(async () => {
+                const session = await stripe.checkout.sessions.create({
+                    payment_method_types: ["card"],
+                    mode: "payment",
+                    line_items: req.body.items.map(  item => {
+
+                        const storeItem = storeItems.get(item.id)
+
+                        return {
+                            price_data: {
+                                currency: "usd",
+                                product_data: {
+                                    name: title,
+                                },
+                                unit_amount: price,
+                            },
+                            quantity: 1,
+                        }
+                    }),
+                    success_url: "http://localhost:3000",
+                    cancel_url: "http://localhost:3000",
+                })
+                res.json({ url: session.url })
+            })
+
+        })
+
     } catch (e) {
       res.status(500).json({ error: e.message })
     }
@@ -58,7 +75,9 @@ router.get('/byId/:id', async (req,res) => {
 router.post("/", verifyJWT, async (req, res) => {
     const post = req.body
     const username = req.user.username
+    const price = (post.price * 100)
     post.username = username
+    post.price = price.toString()
     await Posts.create(post)
     res.json(post)
 })
