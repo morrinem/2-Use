@@ -7,7 +7,7 @@ const {verifyJWT} = require('../middlewares/AuthMiddleware')
 router.use(express.json())
 
 
-const stripe = require("stripe")("sk_test_51KgYZOIYz2lJZsruoI7jmke5oBRL2CHiSYeeekhkmiDiF3CG3bf0KjNOofXFQvK2iW7mNAczq9WocOE4fSXVaLSZ00CM9Qb2hz")
+const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 
 const storeItems = new Map([
   [1, { priceInCents: 1000, name: "Learn React Today" }],
