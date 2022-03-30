@@ -54,6 +54,7 @@ function  Profile() {
     const [userage,setUserage] = useState("")
     const [university, setUniversity] = useState("")
     const [id,setId] = useState("")
+    const [listOfPosts,setListOfPosts] = useState([])
     console.log("id is ", id)
 
     useEffect(() => {
@@ -64,11 +65,20 @@ function  Profile() {
             await axios.get('http://localhost:3001/auth/profile',
                 {headers: {"x-access-token": token}}
             ).then((response) => {
-                
-                console.log("response.data is ", response.data.username)
+
+                setId(response.data.id)
+                console.log("response.data is ", response.data)
                 setUsername(response.data.username)
                 setUserage(response.data.age)
                 setUniversity(response.data.university)
+            })
+            
+            await axios.get('http://localhost:3001/posts/byuserId',
+                {headers: {"x-access-token": token}}
+            ).then((response) => {
+
+                console.log("res.data is ", response.data)
+                setListOfPosts(response.data)
             })
             
            
@@ -88,8 +98,20 @@ function  Profile() {
                 University: {university}
                 </Title>
             </Wrapper>
+
         </Container>
+        <div className="App">
+            {listOfPosts.map((value, key) => {
+                return <div className="post">
+                    <div className="title">{value.title}</div>
+                    <div className="body">{value.postText}</div>
+                    <div className="footer">{value.username}
+                    </div>
+                </div>})}
+        </div>
         <Footer/>
+
+
         </div>
     )
 }

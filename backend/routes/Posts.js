@@ -74,10 +74,19 @@ router.get('/byId/:id', async (req,res) => {
     res.json(post)
 })
 
+router.get('/byuserId', verifyJWT, async (req,res) => {
+    const id = req.user.id
+    const listOfPosts = await Posts.findAll({where: {UserId: id}})
+    res.json(listOfPosts)
+})
+
+
 
 router.post("/", verifyJWT, async (req, res) => {
     const post = req.body
     const username = req.user.username
+    const id = req.user.id
+    post.UserId = id
     const price = (post.price * 100)
     post.username = username
     post.price = price.toString()
