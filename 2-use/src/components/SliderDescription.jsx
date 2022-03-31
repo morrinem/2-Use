@@ -35,6 +35,7 @@ const Button = styled.button`
     border-color: teal;
     margin: 10px;
     border-radius: 30px;
+    border-width: 3px;
     &:hover{
         background-color: #ced4c5;
         transform: scale(1.2);
