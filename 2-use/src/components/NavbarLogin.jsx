@@ -3,6 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import {mobile} from '../responsive'
+import { Link } from "react-router-dom"
 
 const Container = styled.div`
     height: 60px;
@@ -22,10 +23,14 @@ const Center = styled.div`
     text-align: center;
 `
 
-const Logo = styled.h1`
+const Logo = styled.button`
     font-weight: bold;
+    border: none;
+    background-color: transparent;
+    font-size: 35px;
     ${mobile({fontSize:"24px"})};
 `
+
 
 //badgecontent is the amount of items in the cart
 //we'll modify this when we get products up and running
@@ -34,7 +39,11 @@ const Navbar = () => {
         <Container>
             <Wrapper>
                 <Center>
-                    <Logo>2USE.</Logo>
+                    <Link to="/">
+                        <Logo type="button" className="btn btn-info">
+                            2USE
+                        </Logo>
+                    </Link>
                 </Center>
             </Wrapper>
         </Container>
