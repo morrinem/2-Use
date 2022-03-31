@@ -1,6 +1,7 @@
 import { Facebook, Instagram, MailOutline, Phone, Pinterest, Room, Twitter } from '@material-ui/icons'
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
+import { Link } from "react-router-dom"
 
 import ImagePayement from '../images/payement.png'
 import { mobile } from '../responsive'
@@ -82,6 +83,10 @@ const ContactItem = styled.div`
 const Payement = styled.img`
     width: 50%;
 `
+const linkStyle = {
+    textDecoration: "none",
+    color: 'black'
+  };
 
 
 const Footer = () => {
@@ -108,12 +113,12 @@ const Footer = () => {
             <Center>
                 <Title>Links</Title>
                 <List>
-                    <ListItem>Home</ListItem>
-                    <ListItem>Cart</ListItem>
-                    <ListItem>My Account</ListItem>
-                    <ListItem>Order Tracking</ListItem>
-                    <ListItem>Wishlist</ListItem>
-                    <ListItem>Terms</ListItem>
+                    <ListItem onClick={event => window.scrollTo({top: 0, behavior: 'smooth'})}><Link to="/" style={linkStyle}>Home</Link></ListItem>
+                    <ListItem onClick={event => window.scrollTo({top: 0, behavior: 'smooth'})}><Link to="/Product" style={linkStyle}>Cart</Link></ListItem>
+                    <ListItem onClick={event => window.scrollTo({top: 0, behavior: 'smooth'})}><Link to="Profile" style={linkStyle}>My Account</Link></ListItem>
+                    <ListItem onClick={event => window.scrollTo({top: 0, behavior: 'smooth'})}><Link to="/" style={linkStyle}>Order Tracking</Link></ListItem>
+                    <ListItem onClick={event => window.scrollTo({top: 0, behavior: 'smooth'})}><Link to="/" style={linkStyle}>Wishlist</Link></ListItem>
+                    <ListItem onClick={event => window.scrollTo({top: 0, behavior: 'smooth'})}><Link to="/" style={linkStyle}>Terms</Link></ListItem>
                 </List>
             </Center>
 

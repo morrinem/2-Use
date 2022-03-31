@@ -3,6 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import {mobile} from '../responsive'
+import {Link} from "react-router-dom"
 
 const Container = styled.div`
     height: 60px;
@@ -22,8 +23,11 @@ const Center = styled.div`
     text-align: center;
 `
 
-const Logo = styled.h1`
+const Logo = styled.button`
     font-weight: bold;
+    font-size: 35px;
+    border: none;
+    background-color: transparent;
     ${mobile({fontSize:"24px"})};
 `
 
@@ -34,7 +38,9 @@ const Navbar = () => {
         <Container>
             <Wrapper>
                 <Center>
-                    <Logo>2USE.</Logo>
+                    <Link to="/">
+                    <Logo type="button" className="btn btn-info">2USE.</Logo>
+                    </Link>
                 </Center>
             </Wrapper>
         </Container>

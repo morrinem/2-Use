@@ -122,7 +122,7 @@ const Navbar = () => {
           <Center>
             <Link to="/">
               <Logo type="button" className="btn btn-info">
-                2USE
+                2USE.
               </Logo>
             </Link>
           </Center>
