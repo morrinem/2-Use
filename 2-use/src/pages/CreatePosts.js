@@ -8,6 +8,7 @@ const CreatePosts = () => {
         title: "",
         postText: "",
         price: "",
+        imageUrl: "",
     };
     const token = localStorage.getItem('token')
     const onSubmit = (data) => {
@@ -46,6 +47,14 @@ const CreatePosts = () => {
                         id="inputCreatePost"
                         name="price"
                         placeholder="(Ex. 9.99...)"
+                    />
+                    <label>Image URL: </label>
+                    <ErrorMessage name="Image" component="span" />
+                    <Field
+                        autocomplete="off"
+                        id="inputCreatePost"
+                        name="imageUrl"
+                        placeholder="???"
                     />
                     <button type="submit"> Create Post</button>
                 </Form>

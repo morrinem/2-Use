@@ -18,10 +18,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DECIMAL(10,2),
             allowNull: false,
         },
-        // imageurl: {
-        //     type: DataTypes.STRING,
-        //     allowNull: false,
-        // },
+        imageUrl: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
 
     })
 

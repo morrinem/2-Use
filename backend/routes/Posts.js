@@ -25,6 +25,7 @@ router.post("/", verifyJWT, async (req, res) => {
     const username = req.user.username
     post.username = username
     post.price = req.body.price
+    post.imageUrl = req.body.imageUrl
     await Posts.create(post)
     res.json(post)
 })

@@ -19,5 +19,12 @@
     "database": "data",
     "host": "sweng-2use.c7pxu4xrnnvy.eu-west-1.rds.amazonaws.com",
     "dialect": "mysql"
+  },
+  "dev-local": {
+    "username": "root",
+    "password": "null",
+    "database": "data",
+    "host": "localhost",
+    "dialect": "mysql"
   }
 }
