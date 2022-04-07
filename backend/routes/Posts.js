@@ -7,7 +7,7 @@ const {verifyJWT} = require('../middlewares/AuthMiddleware')
 router.use(express.json())
 
 
-const stripe = require("stripe")("sk_test_51KgYZOIYz2lJZsruoI7jmke5oBRL2CHiSYeeekhkmiDiF3CG3bf0KjNOofXFQvK2iW7mNAczq9WocOE4fSXVaLSZ00CM9Qb2hz")
+const stripe = require("stripe")(process.env.JWT_PRIVATE_KEY)
 
 const storeItems = new Map([
   [1, { priceInCents: 1000, name: "Learn React Today" }],
@@ -74,10 +74,19 @@ router.get('/byId/:id', async (req,res) => {
     res.json(post)
 })
 
+router.get('/byuserId', verifyJWT, async (req,res) => {
+    const id = req.user.id
+    const listOfPosts = await Posts.findAll({where: {UserId: id}})
+    res.json(listOfPosts)
+})
+
+
 
 router.post("/", verifyJWT, async (req, res) => {
     const post = req.body
     const username = req.user.username
+    const id = req.user.id
+    post.UserId = id
     const price = (post.price * 100)
     post.username = username
     post.price = price.toString()
