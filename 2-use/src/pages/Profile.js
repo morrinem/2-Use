@@ -82,7 +82,6 @@ function  Profile() {
             })
 
 
-
         }
         profileInfo()
     },[])
@@ -97,6 +96,7 @@ function  Profile() {
                 University: {university}
                 </Title>
             </Wrapper>
+
         </Container>
         <div className="App">
             {listOfPosts.map((value, key) => {
@@ -108,6 +108,8 @@ function  Profile() {
                 </div>})}
         </div>
         <Footer/>
+
+
         </div>
     )
 }
