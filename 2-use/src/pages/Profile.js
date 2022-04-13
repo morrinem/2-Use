@@ -80,8 +80,6 @@ function  Profile() {
                 console.log("res.data is ", response.data)
                 setListOfPosts(response.data)
             })
-            
-           
 
 
         }
