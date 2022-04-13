@@ -9,7 +9,7 @@ import { mobile } from '../responsive'
 
 const Container = styled.div`
     width: 100vw;
-    height: 100vh;
+    height: 50vh;
     background:linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url(${Background}) center;
     background-size: cover;
     background-attachment: fixed;
@@ -17,17 +17,20 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
 `
 
 const Wrapper = styled.div`
-    width: 80%;
+    width: 50%;
     padding: 20px;
     background-color: white;
+    border-radius: 30px;
     ${mobile({width:"50%"})};
 `
 
+
 const Title = styled.h1`
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 300;
     color: teal;
 `
@@ -35,6 +38,7 @@ const Title = styled.h1`
 const Form = styled.form`
     display: flex;
     flex-wrap: wrap;
+    
 `
 
 const Description = styled.span`
@@ -50,30 +54,33 @@ const About = () => {
         <Navbar/>
         <Container>
             <Wrapper>
-                <Title>About Us</Title>
+                <Title><b>About Us</b></Title>
                 <Form>
                     <Description>
-                    <b>Pictures here</b>
-                    I used to have trouble shopping second hand because I was stuck 
-                    in a belief that it was strange to wear someone else's clothes 
-                    and more prominently - that if I didn't have new styles, I wouldn't 
-                    fit in. Maybe you were like me OR are still thinking this... But who 
-                    taught us that? With some reflection, it seems like these ideas have 
-                    to come from somewhere like major marketing within the fast fashion 
-                    industry. We are told through campaigns that we consistently need 
-                    more trendy items and that this consumption is normal because individual 
-                    pieces are cheap. But it's come to light that this is not sustainable for
-                     our wallets, closets, environment and human life.So enters a new perspective 
-                     and awareness on shopping second hand. A choice that we are able to make 
-                     towards purchasing clothing that's been produced and no longer worn by the 
-                     original owner. This style of clothing can come in a variety of forms - 
-                     consignment, vintage, thrift, hand-me-downs, swapping clothes with friends. 
-                     Based on Fashion Revolution mag, it provides an opportunity to "recreate 
-                     your favorite looks for a fraction of the price by buying from local charity
-                      shops. This keeps perfectly good clothes out of landfill and supports charitable
-                       causes too. Win-win!" And win-win it is — shopping second hand can do so much 
-                       for our wardrobes and wallets. So here are 4 reasons shopping second hand just
-                        makes sense! <b></b>
+                    2USE is a social start-up beginning its roots in the TCD Enactus Society. 2USE aims to tackle some of the largest concerns in students’ 
+                    lives: Financial strain and climate change. This secure, online platform is designed specifically for students and will enable the buying
+                    and selling of used goods to reduce waste, educate on and contribute to a circular economy campus.
+                    </Description>
+                </Form>
+            </Wrapper>
+        </Container>
+        <Container>
+            <Wrapper>
+                <Title><b>Our Mission</b></Title>
+                <Form>
+                    <Description>
+                    To provide an inclusive student-selling platform driven by community,
+                    to reduce financial strain and waste in Dublin and beyond.
+                    </Description>
+                </Form>
+            </Wrapper>
+        </Container>
+        <Container>
+            <Wrapper>
+                <Title><b>Our Vision</b></Title>
+                <Form>
+                    <Description>
+                    To improve the lives of students globally, providing the top platform for creating a circular economy campus.
                     </Description>
                 </Form>
             </Wrapper>

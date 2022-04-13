@@ -1,14 +1,14 @@
 {
   "development": {
     "username": "root",
-    "password": "null",
+    "password": "Ca2012.2566",
     "database": "2use",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "null",
+    "password": "Ca2012.2566",
     "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "mysql"

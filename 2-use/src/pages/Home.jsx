@@ -8,6 +8,9 @@ import Navbar from '../components/Navbar'
 import Newsletter from '../components/Newsletter'
 import Products from '../components/Products'
 import Slider from '../components/Slider'
+import Title from '../components/Title'
+import SliderDescription from '../components/SliderDescription'
+
 
 const Home = () => {
     
@@ -17,7 +20,9 @@ const Home = () => {
             <Announcement />
             <Navbar/>
             <Slider />
+            <SliderDescription/>
             <Categories />
+            <Title/>
             <Products />
             <Newsletter />
             <Footer />

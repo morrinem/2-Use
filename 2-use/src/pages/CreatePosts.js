@@ -56,6 +56,13 @@ const CreatePosts = () => {
                         name="imageUrl"
                         placeholder="???"
                     />
+                    <label>Price: </label>
+                    <Field
+                        autocomplete="off"
+                        id="inputCreatePost"
+                        name="price"
+                        placeholder="(Ex. 23.50...)"
+                    />
                     <button type="submit"> Create Post</button>
                 </Form>
             </Formik>
