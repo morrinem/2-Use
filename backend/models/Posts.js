@@ -15,11 +15,21 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         price: {
-            type: DataTypes.STRING,
+            type: DataTypes.DECIMAL(10,2),
             allowNull: false,
         },
-        
+        imageUrl: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+
     })
+
+    Posts.associate = (models) => {
+        Posts.belongsTo(models.Users, {
+            onDelete: "cascade",
+        })
+    }
 
     return Posts
 }

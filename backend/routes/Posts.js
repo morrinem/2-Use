@@ -54,10 +54,10 @@ router.post("/create-checkout-session", async (req, res) => {
                 })
                 res.json({ url: session.url })
             })
-            
+
         })
 
-       
+
     } catch (e) {
       res.status(500).json({ error: e.message })
     }
@@ -90,7 +90,8 @@ router.post("/", verifyJWT, async (req, res) => {
     post.UserId = id
     const price = (post.price * 100)
     post.username = username
-    post.price = price.toString()
+    post.price = req.body.price
+    post.imageUrl = req.body.imageUrl
     await Posts.create(post)
     res.json(post)
 })
